@@ -1,4 +1,5 @@
-export interface Post {
-  title: string;
-  content: string;
+export interface Review {
+    id: number;
+    varietal: string;
+    rating: number;
 }

@@ -1,7 +1,7 @@
-<mat-accordion multi *ngIf="posts.length > 0">
-  <mat-expansion-panel *ngFor="let post of posts">
-    <mat-expansion-panel-header>{{ post.title }}</mat-expansion-panel-header>
-    <p>{{ post.content }}</p>
+<mat-accordion multi *ngIf="reviews.length > 0">
+  <mat-expansion-panel *ngFor="let post of reviews">
+    <mat-expansion-panel-header>{{ post.varietal }}</mat-expansion-panel-header>
+    <p>{{ post.rating }}</p>
     <mat-action-row>
       <button mat-button color="primary">Edit</button>
       <button mat-button color="warn">Delete</button>
@@ -9,4 +9,4 @@
   </mat-expansion-panel>
 </mat-accordion>
 
-<p class="info-text" *ngIf="posts.length == 0">No posts added yet.</p>
+<p class="info-text" *ngIf="reviews.length == 0">No posts added yet.</p>

@@ -1,24 +1,32 @@
 import { Injectable } from "@angular/core";
 import { Subject } from "rxjs";
+import axios from 'axios';
 
-import { Post } from "./post.model";
+import { Review } from "./post.model";
 
 @Injectable({providedIn: 'root'})
 export class PostsService {
-  private posts: Post[] = [];
-  private postsUpdated = new Subject<Post[]>();
+
+  private reviews: Review[] = [];
+  private reviewsUpdated = new Subject<Review[]>();
 
   getPosts() {
-    return [...this.posts]; // Duplicating the array
+    return [...this.reviews]; // Duplicating the array
   }
 
   getPostUpdateListener() {
-    return this.postsUpdated.asObservable();
+    return this.reviewsUpdated.asObservable();
   }
 
-  addPost(title: string, content: string) {
-    const post: Post = {title: title, content: content};
-    this.posts.push(post);
-    this.postsUpdated.next([...this.posts])
+  updateReviewList() {
+    axios.get('http://localhost:8080/review', {responseType: 'json'})
+      .then((response) => {
+        this.reviews = response.data as Review[];
+        this.reviewsUpdated.next([...this.reviews])
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
   }
+
 }

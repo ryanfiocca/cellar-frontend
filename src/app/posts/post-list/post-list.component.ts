@@ -24,5 +24,6 @@ export class PostListComponent implements OnInit, OnDestroy {
     this.postsSub = this.postsService.getPostUpdateListener().subscribe((reviews: Review[]) => {
       this.reviews = reviews;
     });
+    this.postsService.updateReviewList();
   }
 }

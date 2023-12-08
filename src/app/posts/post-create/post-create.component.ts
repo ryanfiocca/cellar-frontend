@@ -19,25 +19,35 @@ export class PostCreateComponent {
             return;
         }
 
-        // axios.put('http://localhost:8080/review', {
-        //     params: {
-        //         varietal: postForm.value.varietal,
-        //         rating: postForm.value.rating
-        //     }})
-        //     .then(() => this.postsService.updateReviewList())
-        //     .catch(function (error) {
-        //         console.log(error);
-        //     })
-
-        let url = 'http://localhost:8080/review?varietal=' + postForm.value.varietal + '&rating=' + postForm.value.rating;
-
-        axios.put(url)
+        axios.put('http://localhost:8080/review', {
+                rating: parseInt(postForm.value.rating),
+                winery: postForm.value.winery,
+                userId: 1,
+                sweetness: this.isEmpty(postForm.value.sweetness) ? null : parseInt(postForm.value.sweetness), 
+                body: this.isEmpty(postForm.value.body) ? null : postForm.value.body, 
+                color: this.isEmpty(postForm.value.color) ? null : postForm.value.color, 
+                varietal: this.isEmpty(postForm.value.varietal) ? null : postForm.value.varietal, 
+                vintage: this.isEmpty(postForm.value.vintage) ? null : parseInt(postForm.value.vintage), 
+                abv: this.isEmpty(postForm.value.abv) ? null : parseFloat(postForm.value.abv),
+                region: this.isEmpty(postForm.value.region) ? null : postForm.value.region, 
+                price: this.isEmpty(postForm.value.price) ? null : parseFloat(postForm.value.price), 
+                source: this.isEmpty(postForm.value.source) ? null : postForm.value.source, 
+                effervescence: this.isEmpty(postForm.value.effervescence) ? null : postForm.value.effervescence, 
+                notes: this.isEmpty(postForm.value.notes) ? null : postForm.value.notes
+            })
             .then(() => this.postsService.updateReviewList())
             .catch(function (error) {
                 console.log(error);
             })
         
         postForm.resetForm();
+    }
+
+    isEmpty(str): boolean {
+        if (typeof str == 'number') {
+            return false;
+        }
+        return str == null || !str.trim();
     }
 
 }

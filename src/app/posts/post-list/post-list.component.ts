@@ -3,6 +3,8 @@ import { Subscription } from "rxjs";
 
 import { Review } from "../post.model";
 import { PostsService } from "../posts.service";
+import axios from 'axios';
+
 
 @Component({
   selector: 'app-post-list',
@@ -15,6 +17,14 @@ export class PostListComponent implements OnInit, OnDestroy {
 
   constructor(public postsService: PostsService) {}
 
+  onDelete(reviewId: number) {
+    axios.delete('http://localhost:8080/review', { params: { reviewId: reviewId } } )
+      .then(() => this.postsService.updateReviewList())
+      .catch(function (error) {
+        console.log(error);
+    });
+  }
+
   ngOnDestroy() {
     this.postsSub.unsubscribe();
   }
@@ -26,4 +36,5 @@ export class PostListComponent implements OnInit, OnDestroy {
     });
     this.postsService.updateReviewList();
   }
+
 }

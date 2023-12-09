@@ -38,7 +38,7 @@ export class PostCreateComponent {
             .then(() => this.postsService.updateReviewList())
             .catch(function (error) {
                 console.log(error);
-            })
+            });
         
         postForm.resetForm();
     }

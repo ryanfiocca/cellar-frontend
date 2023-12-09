@@ -7,19 +7,24 @@ import { MatCardModule } from '@angular/material/card'
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatExpansionModule } from '@angular/material/expansion';
-
+import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { PostCreateComponent } from './posts/post-create/post-create.component';
 import { HeaderComponent } from './header/header.component';
 import { PostListComponent } from './posts/post-list/post-list.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ReviewEntryPageComponent } from './posts/review-entry-page/review-entry-page.component';
+import { ReportPageComponent } from './reports/report-page/report-page.component';
+import appRoutes from './routerConfig';
 
 @NgModule({
   declarations: [
     AppComponent,
     PostCreateComponent,
     HeaderComponent,
-    PostListComponent
+    PostListComponent,
+    ReviewEntryPageComponent,
+    ReportPageComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +35,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatButtonModule,
     MatToolbarModule,
     MatExpansionModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [],
   bootstrap: [AppComponent]

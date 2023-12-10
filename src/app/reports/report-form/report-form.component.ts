@@ -16,8 +16,8 @@ export class ReportFormComponent {
     constructor(public reportsService: ReportsService) {}
 
     onSubmitReport(postForm: NgForm) {
-        if (this.fieldIsBlank(postForm.value.rating) && this.fieldIsBlank(postForm.value.color) && this.fieldIsBlank(postForm.value.varietal)) {
-            alert('Please enter at least one field to filter on');
+        if (postForm.invalid) {
+            alert('Form is invalid');
             return;
         }
 

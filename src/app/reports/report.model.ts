@@ -5,7 +5,6 @@ export interface Report {
     averageRating: number;
     averageSweetness: number;
     averagePrice: number;
-    favoriteVarietal: string;
     numReds: number;
     numWhites: number;
     numRoses: number

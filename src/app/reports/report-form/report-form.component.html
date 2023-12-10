@@ -1,22 +1,27 @@
 <mat-card>
-    <form (submit)="onSubmitReport(postForm)" #postForm="ngForm" class="form-container">
-
-        <mat-form-field class="form-field">
-            <mat-label>Rating (1-10)</mat-label>
-            <input matInput type="number" name="rating" ngModel #rating="ngModel" placeholder="Ex. 8">
-        </mat-form-field>
-
-        <mat-form-field class="form-field">
-            <mat-label>Color</mat-label>
-            <input matInput type="text" name="color" ngModel #color="ngModel" placeholder="Ex. Red">
-        </mat-form-field>
-      
-        <mat-form-field class="form-field">
-            <mat-label>Varietal</mat-label>
-            <input matInput type="text" name="varietal" ngModel #varietal="ngModel" placeholder="Ex. Merlot">
-        </mat-form-field>
-
-        <button mat-raised-button color="primary" type="submit">Submit</button>
-
-    </form>
+    <div>
+        <form (submit)="onSubmitReport(postForm)" #postForm="ngForm">
+            <div class="header">
+                <h2 class="title">Filtering</h2>
+                <span style="flex: 1 1 auto;"></span>
+                <button mat-raised-button color="primary" type="submit" class="submit-button">Submit</button>
+            </div>
+            <div class="fields-container">
+                <mat-form-field class="form-field">
+                    <mat-label>Rating (1-10)</mat-label>
+                    <input matInput type="number" name="rating" ngModel #rating="ngModel" placeholder="Ex. 8">
+                </mat-form-field>
+    
+                <mat-form-field class="form-field">
+                    <mat-label>Color</mat-label>
+                    <input matInput type="text" name="color" ngModel #color="ngModel" placeholder="Ex. Red">
+                </mat-form-field>
+            
+                <mat-form-field class="form-field">
+                    <mat-label>Varietal</mat-label>
+                    <input matInput type="text" name="varietal" ngModel #varietal="ngModel" placeholder="Ex. Merlot">
+                </mat-form-field>
+            </div>
+        </form>
+    </div>
 </mat-card>

@@ -1,1 +1,11 @@
-<p>report-result-statistics works!</p>
+<mat-card *ngIf="report != null && report.reviews.length > 0">
+    <div>
+        <h2>Statistics</h2>
+        <p>Average rating: {{ report.averageRating }}</p>
+        <p *ngIf="report.averageSweetness != null">Average sweetness: {{ report.averageSweetness }}</p>
+        <p *ngIf="report.averagePrice != null">Average price: {{ report.averagePrice }}</p>
+        <p>Number of red wines: {{ report.numReds }}</p>
+        <p>Number of white wines: {{ report.numWhites }}</p>
+        <p>Number of rosé wines: {{ report.numRoses }}</p>
+    </div>
+</mat-card>

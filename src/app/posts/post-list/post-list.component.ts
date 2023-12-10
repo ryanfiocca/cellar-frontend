@@ -25,6 +25,16 @@ export class PostListComponent implements OnInit, OnDestroy {
     });
   }
 
+  constructWineLabel(review: Review) {
+    var label: string = review.rating + ' - ' + review.wine.winery;
+    if (review.wine.varietal != null) {
+      return label += ' ' + review.wine.varietal;
+    } else if (review.wine.color != null) {
+      return label += ' ' + review.wine.color;
+    }
+    return label;
+  }
+
   ngOnDestroy() {
     this.postsSub.unsubscribe();
   }

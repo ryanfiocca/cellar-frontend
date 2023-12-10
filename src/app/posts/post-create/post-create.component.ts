@@ -48,7 +48,7 @@ export class PostCreateComponent {
             notes: this.nullIfBlank(postForm.value.notes),
         }
 
-        axios.put('http://localhost:8080/review', { review })
+        axios.put('http://localhost:8080/review', review)
             .then(() => this.postsService.updateReviewList())
             .catch(function (error) {
                 console.log(error);

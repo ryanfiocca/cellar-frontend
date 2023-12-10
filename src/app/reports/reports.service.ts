@@ -15,7 +15,7 @@ export class ReportsService {
 
     updateReport(newReport: Report) {
         this.report = newReport;
-        console.log(this.report.reviews[0]);
+        console.log(this.report);
         this.reportUpdated.next(this.report);
     }
 

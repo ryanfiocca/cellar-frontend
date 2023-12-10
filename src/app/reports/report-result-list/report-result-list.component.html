@@ -1,6 +1,6 @@
-<mat-accordion multi *ngIf="report.reviews.length > 0">
+<mat-accordion multi *ngIf="report != null && report.reviews.length > 0">
     <mat-expansion-panel *ngFor="let review of report.reviews">
-        <mat-expansion-panel-header>{{ review.rating }} - {{ review.wine.winery }}</mat-expansion-panel-header>
+        <mat-expansion-panel-header>{{ constructWineLabel(review) }}</mat-expansion-panel-header>
         <p>{{ review.rating }}</p>
         <mat-action-row>
             <button mat-button color="primary">Edit</button>
@@ -9,4 +9,4 @@
     </mat-expansion-panel>
 </mat-accordion>
   
-<p class="info-text" *ngIf="report.reviews.length == 0">No reviews added yet.</p>
+<p class="info-text" *ngIf="report == null || report.reviews.length == 0">No reviews added yet.</p>

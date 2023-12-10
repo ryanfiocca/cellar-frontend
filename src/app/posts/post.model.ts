@@ -26,20 +26,3 @@ export interface User {
     firstName: string;
     lastName: string;
 }
-
-export interface ReviewRequest {
-    rating: number;
-    winery: string;
-    userId: number;
-    sweetness: number;
-    body: string;
-    color: string;
-    varietal: string;
-    vintage: string;
-    abv: number;
-    region: string;
-    price: number;
-    source: string;
-    effervescence: string;
-    notes: string;
-}

@@ -16,6 +16,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReviewEntryPageComponent } from './posts/review-entry-page/review-entry-page.component';
 import { ReportPageComponent } from './reports/report-page/report-page.component';
 import appRoutes from './routerConfig';
+import { ReportResultListComponent } from './reports/report-result-list/report-result-list.component';
+import { ReportResultStatisticsComponent } from './reports/report-result-statistics/report-result-statistics.component';
+import { ReportFormComponent } from './reports/report-form/report-form.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,10 @@ import appRoutes from './routerConfig';
     HeaderComponent,
     PostListComponent,
     ReviewEntryPageComponent,
-    ReportPageComponent
+    ReportPageComponent,
+    ReportResultListComponent,
+    ReportResultStatisticsComponent,
+    ReportFormComponent
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output } from "@angular/core";
 import { NgForm } from "@angular/forms";
 
-import { Review } from "../post.model";
+import { Review, User, Wine } from "../post.model";
 import { PostsService } from "../posts.service";
 import axios from 'axios';
 
@@ -15,26 +15,40 @@ export class PostCreateComponent {
     constructor(public postsService: PostsService) {}
 
     onAddReview(postForm: NgForm) {
-        if (postForm.invalid) {
+        if (postForm.invalid || this.isBlank(postForm.value.rating) || this.isBlank(postForm.value.winery)) {
             return;
         }
 
-        axios.put('http://localhost:8080/review', {
-                rating: parseInt(postForm.value.rating),
-                winery: postForm.value.winery,
-                userId: 1,
-                sweetness: this.isEmpty(postForm.value.sweetness) ? null : parseInt(postForm.value.sweetness), 
-                body: this.isEmpty(postForm.value.body) ? null : postForm.value.body, 
-                color: this.isEmpty(postForm.value.color) ? null : postForm.value.color, 
-                varietal: this.isEmpty(postForm.value.varietal) ? null : postForm.value.varietal, 
-                vintage: this.isEmpty(postForm.value.vintage) ? null : parseInt(postForm.value.vintage), 
-                abv: this.isEmpty(postForm.value.abv) ? null : parseFloat(postForm.value.abv),
-                region: this.isEmpty(postForm.value.region) ? null : postForm.value.region, 
-                price: this.isEmpty(postForm.value.price) ? null : parseFloat(postForm.value.price), 
-                source: this.isEmpty(postForm.value.source) ? null : postForm.value.source, 
-                effervescence: this.isEmpty(postForm.value.effervescence) ? null : postForm.value.effervescence, 
-                notes: this.isEmpty(postForm.value.notes) ? null : postForm.value.notes
-            })
+        var wine: Wine = {
+            wineId: null,
+            winery: postForm.value.winery,
+            color: this.nullIfBlank(postForm.value.color),
+            varietal: this.nullIfBlank(postForm.value.varietal),
+            region: this.nullIfBlank(postForm.value.region),
+            vintage: this.nullIfBlank(postForm.value.vintage),
+            abv: this.nullIfBlank(postForm.value.abv),
+            effervescence: this.nullIfBlank(postForm.value.effervescence),
+            price: this.nullIfBlank(postForm.value.price),
+            source: this.nullIfBlank(postForm.value.source),
+        }
+
+        var user: User = {
+            userId: 1,
+            firstName: "Ryan",
+            lastName: "Fiocca"
+        }
+
+        var review: Review = {
+            reviewId: null,
+            user: user,
+            wine: wine,
+            rating: postForm.value.rating,
+            sweetness: this.nullIfBlank(postForm.value.sweetness),
+            body: this.nullIfBlank(postForm.value.body),
+            notes: this.nullIfBlank(postForm.value.notes),
+        }
+
+        axios.put('http://localhost:8080/review', { review })
             .then(() => this.postsService.updateReviewList())
             .catch(function (error) {
                 console.log(error);
@@ -43,11 +57,18 @@ export class PostCreateComponent {
         postForm.resetForm();
     }
 
-    isEmpty(str): boolean {
-        if (typeof str == 'number') {
+    nullIfBlank(value: any) {
+        if (typeof value == 'number') {
+            return value
+        }
+        return this.isBlank(value) ? null : value.toString().trim();
+    }
+
+    isBlank(value: any): boolean {
+        if (typeof value == 'number') {
             return false;
         }
-        return str == null || !str.trim();
+        return value == null || !value.trim();
     }
 
 }

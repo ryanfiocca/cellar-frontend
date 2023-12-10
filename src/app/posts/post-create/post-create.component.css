@@ -6,10 +6,6 @@ mat-form-field, textarea {
   width: 100%;
 }
 
-button {
-  margin: 1rem;
-}
-
 .form-container {
   display: flex;
   flex-wrap: wrap;

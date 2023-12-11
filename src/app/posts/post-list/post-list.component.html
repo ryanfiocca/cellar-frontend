@@ -1,12 +1,31 @@
 <mat-accordion multi *ngIf="reviews.length > 0">
-  <mat-expansion-panel *ngFor="let review of reviews">
-    <mat-expansion-panel-header>{{ constructWineLabel(review) }}</mat-expansion-panel-header>
-    <p *ngIf="review.sweetness != null">{{ review.sweetness }}</p>
-    <mat-action-row>
-      <button mat-button color="primary">Edit</button>
-      <button mat-button color="warn" (click)="onDelete(review.reviewId)">Delete</button>
-    </mat-action-row>
-  </mat-expansion-panel>
+    <mat-expansion-panel *ngFor="let review of reviews">
+        <mat-expansion-panel-header>{{ constructWineLabel(review) }}</mat-expansion-panel-header>
+
+        <div>
+            <h2>Review</h2>
+            <p>Rating: {{ review.rating }}/10</p>
+            <p *ngIf="review.sweetness != null">Sweetness: {{ review.sweetness }}/10</p>
+            <p *ngIf="review.body != null">Body: {{ review.body }}</p>
+            <p *ngIf="review.notes != null">Notes: {{ review.notes }}</p>
+            <br>
+            <h2>Wine Information</h2>
+            <p>Winery: {{ review.wine.winery }}</p>
+            <p *ngIf="review.wine.color != null">Color: {{ review.wine.color }}</p>
+            <p *ngIf="review.wine.varietal != null">Varietal: {{ review.wine.varietal }}</p>
+            <p *ngIf="review.wine.region != null">Region: {{ review.wine.region }}</p>
+            <p *ngIf="review.wine.vintage != null">Vintage: {{ review.wine.vintage }}</p>
+            <p *ngIf="review.wine.abv != null">Alcohol by volume: {{ review.wine.abv }}%</p>
+            <p *ngIf="review.wine.effervescence != null">Effervescence: {{ review.wine.effervescence }}</p>
+            <p *ngIf="review.wine.price != null">Price: ${{ review.wine.price }}</p>
+            <p *ngIf="review.wine.source != null">Source: {{ review.wine.source }}</p>
+        </div>
+        
+        <mat-action-row>
+            <button mat-button color="primary" (click)="openModal(review)">Edit</button>
+            <button mat-button color="warn" (click)="onDelete(review.reviewId)">Delete</button>
+        </mat-action-row>
+    </mat-expansion-panel>
 </mat-accordion>
 
 <p class="info-text" *ngIf="reviews.length == 0">No reviews added yet.</p>

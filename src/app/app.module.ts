@@ -19,6 +19,9 @@ import appRoutes from './routerConfig';
 import { ReportResultListComponent } from './reports/report-result-list/report-result-list.component';
 import { ReportResultStatisticsComponent } from './reports/report-result-statistics/report-result-statistics.component';
 import { ReportFormComponent } from './reports/report-form/report-form.component';
+import { MatSelectModule } from '@angular/material/select';
+import { PostEditModalComponent } from './posts/post-edit-modal/post-edit-modal.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -30,7 +33,8 @@ import { ReportFormComponent } from './reports/report-form/report-form.component
     ReportPageComponent,
     ReportResultListComponent,
     ReportResultStatisticsComponent,
-    ReportFormComponent
+    ReportFormComponent,
+    PostEditModalComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +46,9 @@ import { ReportFormComponent } from './reports/report-form/report-form.component
     MatToolbarModule,
     MatExpansionModule,
     HttpClientModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    MatSelectModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./review-entry-page.component.css']
 })
 export class ReviewEntryPageComponent {
-
+  
 }

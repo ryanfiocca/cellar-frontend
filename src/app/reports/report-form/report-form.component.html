@@ -1,6 +1,6 @@
 <mat-card>
     <div>
-        <form (submit)="onSubmitReport(postForm)" #postForm="ngForm">
+        <form (submit)="onSubmitReport()">
             <div class="header">
                 <h2 class="title">Filtering</h2>
                 <span style="flex: 1 1 auto;"></span>
@@ -8,18 +8,27 @@
             </div>
             <div class="fields-container">
                 <mat-form-field class="form-field">
-                    <mat-label>Rating (1-10)</mat-label>
-                    <input matInput type="number" name="rating" ngModel #rating="ngModel" placeholder="Ex. 8">
+                    <mat-label>Rating</mat-label>
+                    <mat-select name="rating" [(ngModel)]="selectedRating" (focus)="getPossibleRatings()">
+
+                        <mat-option *ngFor="let rating of ratingVals" [value]="rating">{{ rating }}</mat-option>
+                    </mat-select>
                 </mat-form-field>
     
                 <mat-form-field class="form-field">
                     <mat-label>Color</mat-label>
-                    <input matInput type="text" name="color" ngModel #color="ngModel" placeholder="Ex. Red">
+                    <mat-select name="color" [(ngModel)]="selectedColor" (focus)="getPossibleColors()">
+
+                        <mat-option *ngFor="let color of colorVals" [value]="color">{{ color }}</mat-option>
+                    </mat-select>
                 </mat-form-field>
             
                 <mat-form-field class="form-field">
                     <mat-label>Varietal</mat-label>
-                    <input matInput type="text" name="varietal" ngModel #varietal="ngModel" placeholder="Ex. Merlot">
+                    <mat-select name="varietal" [(ngModel)]="selectedVarietal" (focus)="getPossibleVarietals()">
+
+                        <mat-option *ngFor="let varietal of varietalVals" [value]="varietal">{{ varietal }}</mat-option>
+                    </mat-select>
                 </mat-form-field>
             </div>
         </form>

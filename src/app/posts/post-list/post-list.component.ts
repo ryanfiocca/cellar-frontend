@@ -17,6 +17,10 @@ export class PostListComponent implements OnInit, OnDestroy {
 
   constructor(public postsService: PostsService) {}
 
+  openModal(review: Review): void {
+    this.postsService.openModal(review);
+  }
+
   onDelete(reviewId: number) {
     axios.delete('http://localhost:8080/review', { params: { reviewId: reviewId } } )
       .then(() => this.postsService.updateReviewList())
